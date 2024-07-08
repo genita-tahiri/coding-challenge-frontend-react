@@ -1,0 +1,60 @@
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .about-heading {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .about-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+  }
+  
+  .feature-heading {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .feature-list {
+    list-style-type: disc;
+    padding-left: 20px;
+  
+    .feature-item {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 8px;
+    }
+  }
+  
+  .about-summary {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+    margin-top: 20px;
+  }
+  
+  .benefits-heading {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .benefits-list {
+    list-style-type: none;
+    padding-left: 0;
+  
+    .benefit-item {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 12px;
+    }
+  }

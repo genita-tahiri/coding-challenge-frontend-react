@@ -1,0 +1,38 @@
+.benefit-calculator {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+
+  .calculator-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .employee-costs {
+    .employee-cost {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+      
+      .employee-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .employee-name {
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .paycheck-cost {
+        color: #007bff;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
