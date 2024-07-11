@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './EmployeeForm.scss';
 
-const EmployeeForm = ({ onSubmit, initialEmployee }) => {
+const EmployeeForm = ({ onSubmit, initialEmployee, setIsEditing }) => {
   const [employee, setEmployee] = useState({ name: '', dependents: [] });
   const [dependentName, setDependentName] = useState('');
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
@@ -9,8 +9,11 @@ const EmployeeForm = ({ onSubmit, initialEmployee }) => {
   useEffect(() => {
     if (initialEmployee) {
       setEmployee(initialEmployee);
+      setIsEditing(true);
+    } else {
+      setIsEditing(false);
     }
-  }, [initialEmployee]);
+  }, [initialEmployee, setIsEditing]);
 
   // Function to handle changes to a dependent's name
   const handleDependentChange = (index, newName) => {

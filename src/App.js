@@ -4,7 +4,6 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Employee from './components/Employee/Employee';
 import EmployeeForm from './components/EmployeeForm/EmployeeForm';
-import BenefitsCost from './components/BenefitsCost/BenefitsCost';
 import About from './pages/About/About';
 import './styles.scss';
 import mockData from './mockData/mockApi.json';
@@ -12,14 +11,15 @@ import mockData from './mockData/mockApi.json';
 const App = () => {
   const [employees, setEmployees] = useState([]);
   const [editEmployee, setEditEmployee] = useState(null);
+  const [isEditing, setIsEditing] = useState(false); // Define editing state
 
-      // Load employees from localStorage on initial mount
+   // Load employees from localStorage on initial mount
   useEffect(() => {
     const storedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
     setEmployees(storedEmployees.length > 0 ? storedEmployees : mockData.employees);
   }, []);
 
-      // Save employees to localStorage whenever employees state changes
+   // Save employees to localStorage whenever employees state changes
   useEffect(() => {
     localStorage.setItem('employees', JSON.stringify(employees));
   }, [employees]);
@@ -32,6 +32,7 @@ const App = () => {
       );
       setEmployees(updatedEmployees);
       setEditEmployee(null);
+      setIsEditing(false);
     } else {
       // Add new employee
       const newEmployee = { ...employee, id: employees.length + 1 };
@@ -39,16 +40,18 @@ const App = () => {
     }
   };
 
-      // Delete employee
+     // Delete employee
   const handleDeleteEmployee = (employeeId) => {
     const updatedEmployees = employees.filter(emp => emp.id !== employeeId);
     setEmployees(updatedEmployees);
     setEditEmployee(null);
+    setIsEditing(false);
   };
 
-      // Set employee to edit
+  // Set employee to edit
   const handleEditEmployee = (employee) => {
     setEditEmployee(employee);
+    setIsEditing(true);
   };
 
   return (
@@ -61,13 +64,21 @@ const App = () => {
               <>
                 <div className="lists">
                   <div className="list-item">
-                    <Employee employees={employees} onDeleteEmployee={handleDeleteEmployee} onEditEmployee={handleEditEmployee} />
+                    <Employee
+                      employees={employees}
+                      onDeleteEmployee={handleDeleteEmployee}
+                      onEditEmployee={handleEditEmployee}
+                      isEditing={isEditing}
+                    />
                   </div>
                   <div className="list-item">
-                    <EmployeeForm onSubmit={handleAddEmployee} initialEmployee={editEmployee} />
+                    <EmployeeForm
+                      onSubmit={handleAddEmployee}
+                      initialEmployee={editEmployee}
+                      setIsEditing={setIsEditing}
+                    />
                   </div>
                 </div>
-                <BenefitsCost employees={employees} />
               </>
             } />
             <Route path="/about" element={<About />} />

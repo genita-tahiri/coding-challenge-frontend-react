@@ -1,13 +1,14 @@
 import React from 'react';
 import './Employee.scss';
+import BenefitsCost from '../BenefitsCost/BenefitsCost';
 
-const Employee = ({ employees, onDeleteEmployee, onEditEmployee }) => {
+const Employee = ({ employees, onDeleteEmployee, onEditEmployee, isEditing }) => {
   return (
     <div className="employee-list">
       <h2 className="list-title">Employees and Dependents</h2>
       <ul className="list-group">
         {employees.map((employee) => (
-          <li key={employee.id} className="list-items">
+          <li key={employee.id} className="list-items">  
             <div className="employee-info">
               <div className="employee-label">Employee:</div>
               <div className="employee-name">{employee.name}</div>
@@ -22,8 +23,11 @@ const Employee = ({ employees, onDeleteEmployee, onEditEmployee }) => {
                 ))}
               </ul>
             )}
+              <div className="employee-benefits">
+                <BenefitsCost employee={employee} />
+              </div>
             <div className="button-group">
-              <button onClick={() => onEditEmployee(employee)} className="edit-button">
+              <button onClick={() => onEditEmployee(employee)} className="edit-button" disabled={isEditing}>
                 Edit
               </button>
               <button onClick={() => onDeleteEmployee(employee.id)} className="delete-button">
